@@ -1,0 +1,61 @@
+{
+  "version": 8,
+  "name": "Stamen Terrain",
+  "sources": {
+    "stamen-terrain-raster": {
+      "type": "raster",
+      "tiles": [
+        "http://a.tile.stamen.com/terrain/{z}/{x}/{y}.jpg",
+        "http://b.tile.stamen.com/terrain/{z}/{x}/{y}.jpg",
+        "http://c.tile.stamen.com/terrain/{z}/{x}/{y}.jpg"
+      ],
+      "tileSize": 256
+    },
+    "habs_currents": {
+      "type": "video",
+      "urls": ["/test.webm"],
+      "coordinates": [
+        [-83.67187500000001, 43.06888777416961],
+        [-78.75000000000001, 43.06888777416961],
+        [-78.75000000000001, 41.244772343082076],
+        [-83.67187500000001, 41.244772343082076]
+      ]
+    },
+    "habs_winds": {
+      "type": "video",
+      "urls": ["/test.webm"],
+      "coordinates": [
+        [-83.67187500000001, 43.06888777416961],
+        [-78.75000000000001, 43.06888777416961],
+        [-78.75000000000001, 41.244772343082076],
+        [-83.67187500000001, 41.244772343082076]
+      ]
+    }
+  },
+  "layers": [
+    {
+      "id": "stamen-terrain",
+      "source": "stamen-terrain-raster",
+      "type": "raster",
+      "layout": {
+        "visibility": "visible"
+      }
+    },
+    {
+      "id": "habs_currents",
+      "source": "habs_currents",
+      "type": "raster",
+      "layout": {
+        "visibility": "visible"
+      }
+    },
+    {
+      "id": "habs_winds",
+      "source": "habs_winds",
+      "type": "raster",
+      "layout": {
+        "visibility": "visible"
+      }
+    }
+  ]
+}

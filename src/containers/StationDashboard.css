@@ -1,0 +1,31 @@
+#map {
+  position: relative;
+  width: 20%;
+  height: 20%;
+}
+
+.dashboard-map-container {
+  height: 350px;
+  padding: .25rem;
+  margin-bottom: 30px;
+}
+
+.station-lander {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.dashboard-nearby-station-table .table td {
+  padding: .25rem;
+}
+
+@media screen and (max-width: 600px) {
+  #table {
+    visibility: hidden;
+    clear: both;
+    float: left;
+    margin: 10px auto 5px 20px;
+    width: 28%;
+    display: none;
+  }
+}
