@@ -1,0 +1,21 @@
+.ant-btn.expand-drawer-button {
+    position: absolute;
+    margin: 0 auto;
+    margin-top: -75px;
+    z-index: 9999;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 3rem;
+    padding-bottom: .5rem;
+    right: 0;
+    margin-right: 3rem;
+    background-color: #eeeeee;
+
+    &:hover {
+        background-color: #ffffff;
+    }
+}
+
+.ant-checkbox-wrapper + .ant-checkbox-wrapper {
+    margin-left: 0px!important;
+}
