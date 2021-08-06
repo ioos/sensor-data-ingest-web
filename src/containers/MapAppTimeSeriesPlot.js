@@ -28,7 +28,7 @@ function MapAppTimeSeriesPlot(props) {
         if (props.parameters) {
             setYAxis(buildYAxis())
         }
-        // updateSeries()
+        updateSeries()
     }, [props.parameters])
 
     useEffect(() => {
@@ -39,6 +39,7 @@ function MapAppTimeSeriesPlot(props) {
     const updateSeries = () => {
         let newSeries = {}
         props.parameters.forEach((param, idx) => {
+
             let seriesData = [];
             let zones = [];
             for (var i = props.stream.length - 1; i >= 0; i--) {
@@ -55,7 +56,7 @@ function MapAppTimeSeriesPlot(props) {
                 },
                 data: seriesData,
                 yAxis: idx,
-                color: colors[idx],
+                color: colors[props.index ? props.index : idx],
                 zones: zones                
             }
         })
@@ -74,12 +75,12 @@ function MapAppTimeSeriesPlot(props) {
                 title: {
                     text: props.parameterMapping[param],
                     style: {
-                        color: colors[idx]
+                        color: colors[props.index ? props.index : idx],
                     }
                 },
                 labels: {
                     style: {
-                        color: colors[idx]
+                        color: colors[props.index ? props.index : idx],
                     }
                 },
                 opposite: idx % 2 !== 0

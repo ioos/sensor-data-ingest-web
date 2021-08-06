@@ -19,3 +19,22 @@
 .ant-checkbox-wrapper + .ant-checkbox-wrapper {
     margin-left: 0px!important;
 }
+
+.ant-checkbox-wrapper {
+    display: block;
+    width: 100%;
+}
+
+button.ant-btn.reset-stream {
+    margin-top: -1rem;
+    display: block;
+}
+
+.site-drawer-render-in-current-wrapper {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: #fafafa;
+  border: 1px solid #ebedf0;
+  border-radius: 2px;
+}

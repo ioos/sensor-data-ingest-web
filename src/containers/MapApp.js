@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
 import { PieChartOutlined, ExpandAltOutlined, ShrinkOutlined } from '@ant-design/icons';
-import { Layout, Menu, Drawer, Button } from 'antd';
+import { Layout, Menu, Drawer, Button, Checkbox } from 'antd';
 import MapAppDashboard from '../containers/MapAppDashboard';
 import './MapApp.scss';
 
@@ -29,6 +29,7 @@ function MapApp() {
         longitude: -70.66646333333334,
         zoom: 6
     });
+    const [showStationDrawer, setShowStationDrawer] = useState(false);
 
 
     const onCollapse = () => {
@@ -37,7 +38,21 @@ function MapApp() {
     };
 
     const onMarkerClick = (sensorStation) => {
-        setSelectedSensorStation(sensorStation)
+        if (selectedSensorStation === sensorStation) {
+            setSelectedSensorStation(undefined);
+        } else {
+            setSelectedSensorStation(sensorStation)
+        }
+    }
+
+    const stationOnCheck = (sensorStation) => {
+        if (selectedSensorStation === sensorStation) {
+            setSelectedSensorStation(undefined);
+        } else {
+            setSelectedSensorStation(sensorStation)
+        }
+
+        setShowStationDrawer(false);
     }
 
     const onMarkerMouseEnter = (sensorStation) => {
@@ -46,6 +61,10 @@ function MapApp() {
 
     const onMarkerMouseLeave = () => {
         setSensorStationMarkerOnHover(undefined);
+    }
+
+    const stationsMenuOnClick = () => {
+        setShowStationDrawer(!showStationDrawer)
     }
 
     const PulsingMarker = (props) => {
@@ -93,19 +112,38 @@ function MapApp() {
     return (
         <>
             <Header className="site-layout-background" style={{ padding: 0 }} >
-                <h4 style={{ color: "white", paddingTop: "1rem", textAlign: "left" }}>IOOS Sensor Streaming</h4>
+                <h4 style={{ color: "white", paddingTop: "1rem", textAlign: "left", paddingLeft: '1.5rem' }}>IOOS Sensor Streaming</h4>
             </Header>
             <Layout style={{ minHeight: 'calc(100vh - 64px)' }}>
                 <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
                     <div className="logo" />
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" style={{ marginTop: "-.25rem" }}>
-                        <Menu.Item key="1" icon={<PieChartOutlined />}>
-                            Option 1
+                        <Menu.Item onClick={stationsMenuOnClick} key="1" icon={<img className="mt-2 pb-1" src="https://a.tiles.mapbox.com/v3/marker/pin-s+ffffff.png"></img>}>
+                            Available stations
                         </Menu.Item>
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Content>
+                    <Content className="site-drawer-render-in-current-wrapper">
+                        <Drawer
+                            getContainer={false}
+                            title={'Available stations'}
+                            placement="left"
+                            closable={true}
+                            onClose={() => setShowStationDrawer(false)}
+                            mask={false}
+                            visible={showStationDrawer}
+                            key="left"
+                            style={{ position: 'absolute' }}
+                        >
+
+                            { sensorStations.map((station) => {
+                                return (
+                                    <a style={{ textAlign: "left", float: "left"}} onClick={() => stationOnCheck(station)}>{station.id}</a>
+                                )
+                            })}
+
+                        </Drawer>
                         <ReactMapGL
                             {...viewport}
                             onViewportChange={nextViewport => setViewport(nextViewport)}
@@ -160,6 +198,8 @@ function MapApp() {
 
                         </ReactMapGL>
 
+
+
                         <Drawer
                             title={selectedSensorStation?.name ?? ''}
                             placement="bottom"
@@ -183,7 +223,7 @@ function MapApp() {
                             </Button>
 
                             {selectedSensorStation &&
-                                <MapAppDashboard sensorStation={selectedSensorStation}></MapAppDashboard>
+                                <MapAppDashboard sensorStation={selectedSensorStation} extended={bottomDrawerExpanded}></MapAppDashboard>
                             }
                         </Drawer>
 
