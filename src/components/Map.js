@@ -17,7 +17,6 @@ import inactiveStationMarker from './pin-s+DCDCDC.png';
 class GLMap extends Component {
     constructor(props) {
       super(props);
-      console.log(props)
       this.state = {
         x: null,
         y: null,

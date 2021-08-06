@@ -46,6 +46,7 @@ class TimeSeriesPlot extends React.Component {
         zones: zones
       });
     });
+
     const options = {
       chart: {
         type: 'spline',

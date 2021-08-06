@@ -6,7 +6,7 @@ import ioosLogo from './logos/ioos_logo.png';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import Routes from './Routes';
 import { faSpinner, faArrowCircleUp, faArrowCircleDown, faBell, faHome, faSignOutAlt, faInfoCircle, faPlayCircle, faPauseCircle, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import './App.css';
+import './App.scss';
 
 library.add(faSpinner);
 library.add(faArrowCircleUp);
@@ -22,8 +22,8 @@ library.add(faExternalLinkAlt);
 
 function App() {
   return (
-    <div className="App container-fluid">
-      <Navbar bg="light" variant="light" expand="lg" fluid collapseOnSelect>
+    <div className="App">
+      {/* <Navbar bg="light" variant="light" expand="lg" fluid collapseOnSelect>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Navbar.Brand href="https://ioos.us">
@@ -37,7 +37,7 @@ function App() {
             IOOS Sensor Streaming
           </Navbar.Brand>
         </Navbar.Collapse>
-      </Navbar>
+      </Navbar> */}
       <Routes/>
     </div>
 
