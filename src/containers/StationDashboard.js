@@ -110,7 +110,6 @@ export default class StationDashboard extends Component {
             lat: 44 + 53.7084 / 60,
             lon: -(68 + 39.9878/ 60)
           }];
-          console.log(this.state.stream)
           let stream = transformedStream.concat(this.state.stream);
 
           // Define function to sort array of objects
@@ -209,7 +208,6 @@ export default class StationDashboard extends Component {
         lat: 44 + 53.7084 / 60,
         lon: -(68 + 39.9878/ 60)
       }];
-      console.log(this.state.stream)
       let stream = transformedStream.concat(this.state.stream);
 
       // Define function to sort array of objects
@@ -312,7 +310,6 @@ export default class StationDashboard extends Component {
       };
       stream.map((obj, ind) => {
         let val = obj[param];
-        console.log(val)
         return rowObj[obj[timestamp]] = val.toFixed(2);
       });
       return tableData.push(rowObj);
@@ -402,11 +399,6 @@ export default class StationDashboard extends Component {
     return (
       <div>
         {selected.map((param, idx) => {
-          console.log('parammapping')
-          console.log(this.parameterMapping)
-
-          console.log('parameters')
-          console.log([param])
           return <TimeSeriesPlot key={param} stream={stream} parameters={[param]} parameterMapping={this.parameterMapping} color={colors[idx % colors.length]}/>
         })}
       </div>

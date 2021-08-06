@@ -33,8 +33,6 @@ function MapAppDashboard(props) {
             let y = b[key];
             return ((x > y) ? -1 : ((x < y) ? 1 : 0));
         });
-
-        console.log(b)
         return b
     }
 
